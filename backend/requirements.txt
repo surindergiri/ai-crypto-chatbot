@@ -5,7 +5,7 @@ requests
 google-adk
 openai-whisper
 pyttsx3
-pywin32
+pywin32; sys_platform == 'win32'
 pydub
 python-multipart
 torch
@@ -13,3 +13,5 @@ scipy
 chromadb
 sentence-transformers
 pypdf
+google-generativeai
+numpy

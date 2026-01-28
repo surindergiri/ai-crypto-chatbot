@@ -18,7 +18,7 @@ const ChatbotPanel = () => {
         stopAudio,
         sendMessage,
         currentTranscript
-    } = useChatWebSocket('ws://localhost:8001/ws/chat/user-session-1');
+    } = useChatWebSocket(import.meta.env.VITE_WS_URL || 'ws://localhost:8001/ws/chat/user-session-1');
 
     // Add initial greeting if empty
     React.useEffect(() => {

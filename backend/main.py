@@ -67,7 +67,10 @@ import json
 import re
 import time
 import pyttsx3
-import pythoncom  # Required for threading on Windows
+try:
+    import pythoncom  # Required for threading on Windows
+except ImportError:
+    pythoncom = None
 
 # Load Whisper model (lazy load or on startup)
 # Using "tiny" model for maximum speed.
@@ -78,7 +81,8 @@ print("Whisper model loaded.")
 
 def generate_voice(text, output_file):
     # Initialize engine in the thread
-    pythoncom.CoInitialize()
+    if pythoncom:
+        pythoncom.CoInitialize()
     try:
         engine = pyttsx3.init()
         # Optional: Set properties (rate, volume, voice)
@@ -94,7 +98,8 @@ def generate_voice(text, output_file):
         engine.save_to_file(text, output_file)
         engine.runAndWait()
     finally:
-        pythoncom.CoUninitialize()
+        if pythoncom:
+            pythoncom.CoUninitialize()
 
 # --- WebSocket Streaming ---
 
