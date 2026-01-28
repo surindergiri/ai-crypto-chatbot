@@ -51,7 +51,9 @@ except ImportError:
     from . import rag_service
 
 # Initialize RAG (Vector DB)
-rag_service.initialize_rag()
+# Initialize RAG (Vector DB)
+# Lazy load instead of global init to save memory on 512MB instances
+# rag_service.initialize_rag()
 
 @app.get("/")
 def health_check():
@@ -74,9 +76,18 @@ except ImportError:
 
 # Load Whisper model (lazy load or on startup)
 # Using "tiny" model for maximum speed.
-print("Loading Whisper model...")
-audio_model = whisper.load_model("tiny")
-print("Whisper model loaded.")
+# Load Whisper model (lazy load or on startup)
+# Using "tiny" model for maximum speed.
+# audio_model = whisper.load_model("tiny")
+_audio_model_cache = None
+
+def get_audio_model():
+    global _audio_model_cache
+    if _audio_model_cache is None:
+        print("Loading Whisper model (Lazy)...")
+        _audio_model_cache = whisper.load_model("tiny")
+        print("Whisper model loaded.")
+    return _audio_model_cache
 
 
 def generate_voice(text, output_file):
@@ -135,7 +146,8 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                              temp_p_path = temp_p.name
                          try:
                              # Use beam_size=1 and fast decode for partial
-                             res = await asyncio.to_thread(audio_model.transcribe, temp_p_path, fp16=False, language="en")
+                             model = get_audio_model()
+                             res = await asyncio.to_thread(model.transcribe, temp_p_path, fp16=False, language="en")
                              return res["text"].strip()
                          finally:
                              if os.path.exists(temp_p_path): os.remove(temp_p_path)
@@ -161,7 +173,8 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                         try:
                             # Note: Whisper needs ffmpeg to read .webm/bytes
                             # Force English to prevent random language hallucinations
-                            res = audio_model.transcribe(temp_in_path, language="en")
+                            model = get_audio_model()
+                            res = model.transcribe(temp_in_path, language="en")
                             user_text = res["text"].strip()
                             
                             # Hallucination Filtering
