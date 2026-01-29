@@ -47,7 +47,7 @@ const ChatbotPanel = () => {
     };
 
     return (
-        <div className="flex flex-col w-full h-full bg-gray-100/60 backdrop-blur-2xl md:rounded-3xl shadow-2xl shadow-indigo-500/10 border border-white/50 overflow-hidden relative">
+        <div className="flex flex-col w-full h-full bg-gray-100/60 backdrop-blur-2xl md:rounded-3xl shadow-2xl shadow-indigo-500/10 border border-indigo-200 overflow-hidden relative">
             <ChatHeader
                 onClose={() => { }} // No-op since it's not a modal anymore
                 status={!isConnected ? "Connecting..." : isTyping ? "Processing..." : isListening ? "Listening..." : "Online"}

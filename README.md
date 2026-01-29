@@ -2,7 +2,7 @@
 
 A futuristic, voice-enabled AI cryptocurrency assistant that provides real-time market data, news, and network statistics. Built with a **FastAPI** backend and a **React/Vite** frontend, powered by **Google Gemini** and **Whisper**.
 
-![Crypto Chatbot Interface](assets/app_interface.png)
+![Crypto Chatbot Interface](assets/chatbot-demo.png)
 
 ## ✨ Features
 
