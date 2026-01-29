@@ -47,13 +47,32 @@ const ChatbotPanel = () => {
     };
 
     return (
-        <div className="flex flex-col w-full h-full glass md:rounded-2xl shadow-none md:shadow-[0_0_50px_rgba(0,0,0,0.5)] border-0 md:border border-neon-blue/30 overflow-hidden relative">
+        <div className="flex flex-col w-full h-full bg-gray-100/60 backdrop-blur-2xl md:rounded-3xl shadow-2xl shadow-indigo-500/10 border border-white/50 overflow-hidden relative">
             <ChatHeader
                 onClose={() => { }} // No-op since it's not a modal anymore
                 status={!isConnected ? "Connecting..." : isTyping ? "Processing..." : isListening ? "Listening..." : "Online"}
             />
 
             <ChatMessages messages={messages} isTyping={isTyping} />
+
+            {messages.length <= 1 && (
+                <div className="px-4 pb-2 grid grid-cols-2 gap-2">
+                    {[
+                        "What is the price of Bitcoin?",
+                        "What is the latest crypto news?",
+                        "Show me the network stats for Dogecoin",
+                        "Tell me the history of Bitcoin"
+                    ].map((prompt, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handleSendMessage(prompt)}
+                            className="text-left text-xs bg-white hover:bg-white/80 border border-white/60 hover:border-violet-200 text-slate-600 hover:text-violet-600 p-4 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                        >
+                            {prompt}
+                        </button>
+                    ))}
+                </div>
+            )}
 
             <ChatInput
                 onSendMessage={handleSendMessage}

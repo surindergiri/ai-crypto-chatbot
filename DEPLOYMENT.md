@@ -45,7 +45,7 @@ Because the backend requires **FFmpeg** (for voice processing), we recommend dep
         *   Change `https://` to `wss://` (secure websocket).
         *   Append `/ws/chat/user-session-1`.
         *   *Example*: `wss://crypto-backend.onrender.com/ws/chat/user-session-1`
-6.  Click **Deploy**.
+6.  Click **Deploy**.   
 
 ---
 

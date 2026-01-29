@@ -4,11 +4,15 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
-    <div className="h-[100dvh] w-screen bg-deep-black text-white selection:bg-neon-blue/30 selection:text-neon-blue overflow-hidden flex items-center justify-center p-0 md:p-4">
-      {/* Simple Background - distinct from complex one before */}
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 to-black -z-10" />
+    <div className="h-[100dvh] w-screen bg-slate-50 text-slate-800 selection:bg-violet-200 selection:text-violet-900 overflow-hidden flex items-center justify-center p-0 md:p-4 relative">
+      {/* Mesh Gradient Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"></div>
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
+      </div>
 
-      <div className="w-full h-full md:max-w-5xl md:h-[85vh]">
+      <div className="w-full h-full md:max-w-5xl md:h-[85vh] z-10">
         <ErrorBoundary>
           <ChatbotPanel />
         </ErrorBoundary>

@@ -1,33 +1,35 @@
 import React from 'react';
-import { X, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import tsmLogo from '../../assets/TSM-Logo.png';
 
 const ChatHeader = ({ onClose, status = 'Online' }) => {
     return (
-        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-white/5 backdrop-blur-md rounded-t-2xl">
-            <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between p-6 border-b border-indigo-50/50 bg-white/40 backdrop-blur-md">
+            <div className="flex items-center gap-4">
                 <div className="relative">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple p-[2px]">
-                        <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
-                            <Sparkles className="w-5 h-5 text-neon-blue animate-pulse" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 p-[2px]">
+                        <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+                            <Sparkles className="w-5 h-5 text-violet-500 animate-pulse" />
                         </div>
                     </div>
-                    <span className="absolute bottom-0 right-0 w-3 h-3 bg-start-up border border-black rounded-full"></span>
+                    <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-white rounded-full"></span>
                 </div>
                 <div>
-                    <h3 className="font-bold text-white flex items-center gap-2">
+                    <h3 className="font-bold text-slate-800 flex items-center gap-2 text-lg">
                         AI Assistant
-                        <span className="text-[10px] bg-neon-blue/20 text-neon-blue px-2 py-0.5 rounded-full border border-neon-blue/30">BETA</span>
+                        <span className="text-[10px] bg-violet-100 text-violet-600 px-2 py-0.5 rounded-full font-medium">TSM</span>
                     </h3>
-                    <p className="text-xs text-neon-blue animate-pulse">{status}</p>
+                    <p className="text-xs text-slate-500 font-medium">{status}</p>
                 </div>
             </div>
 
-            <button
-                onClick={onClose}
-                className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-colors"
-            >
-                <X className="w-5 h-5" />
-            </button>
+            <div className="w-16 h-10 relative group">
+                <img
+                    src={tsmLogo}
+                    alt="TSM Logo"
+                    className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                />
+            </div>
         </div>
     );
 };
