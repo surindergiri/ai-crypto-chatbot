@@ -1,8 +1,11 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Book } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import tsmLogo from '../../assets/TSM-Logo.png';
 
 const ChatHeader = ({ onClose, status = 'Online' }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="flex items-center justify-between p-6 border-b border-indigo-50/50 bg-white/40 backdrop-blur-md">
             <div className="flex items-center gap-4">
@@ -23,12 +26,21 @@ const ChatHeader = ({ onClose, status = 'Online' }) => {
                 </div>
             </div>
 
-            <div className="w-16 h-10 relative group">
-                <img
-                    src={tsmLogo}
-                    alt="TSM Logo"
-                    className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                />
+            <div className="flex items-center gap-4">
+                <button
+                    onClick={() => navigate('/docs')}
+                    className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-slate-100/50 rounded-full transition-all group"
+                    title="Documentation"
+                >
+                    <Book className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                </button>
+                <div className="w-16 h-10 relative group">
+                    <img
+                        src={tsmLogo}
+                        alt="TSM Logo"
+                        className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                </div>
             </div>
         </div>
     );
