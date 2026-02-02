@@ -18,7 +18,10 @@ const ChatHeader = ({ onClose, status = 'Online' }) => {
                     <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-white rounded-full"></span>
                 </div>
                 <div>
-                    <h3 className="font-bold text-slate-800 flex items-center gap-2 text-lg">
+                    <h3
+                        onClick={() => window.location.href = '/'}
+                        className="font-bold text-slate-800 flex items-center gap-2 text-lg cursor-pointer hover:text-indigo-600 transition-colors"
+                    >
                         AI Assistant
                         <span className="text-[10px] bg-violet-100 text-violet-600 px-2 py-0.5 rounded-full font-medium">TSM</span>
                     </h3>

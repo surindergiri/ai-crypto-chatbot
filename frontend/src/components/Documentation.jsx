@@ -134,6 +134,7 @@ const Documentation = () => {
                         <TechBadge name="Vite Turbo" color="bg-purple-100 text-purple-700 hover:bg-purple-200" />
                         <TechBadge name="Tailwind v4" color="bg-cyan-100 text-cyan-700 hover:bg-cyan-200" />
                         <TechBadge name="FastAPI" color="bg-emerald-100 text-emerald-700 hover:bg-emerald-200" />
+                        <TechBadge name="Google ADK" color="bg-indigo-100 text-indigo-700 hover:bg-indigo-200" />
                         <TechBadge name="Gemini 2.5 Flash" color="bg-orange-100 text-orange-700 hover:bg-orange-200" />
                         <TechBadge name="Whisper V3" color="bg-zinc-100 text-zinc-700 hover:bg-zinc-200" />
                     </div>
